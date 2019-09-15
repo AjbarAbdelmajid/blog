@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="example-wrapper">
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>title</td>
+                <td>description</td>
+                <td>category</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles  %}
+            
+                <tr>
+                    
+                    <td>
+                        <a href="{{path('article.show', {id: article.id})}}" style="text-decoration: none">
+                            <div style="height:100%;width:100%">
+                                {{ article.name}}
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{ article.body}}</td>
+                    <td>{{ article.category}}</td>
+                </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
