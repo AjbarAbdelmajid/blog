@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use App\Form\ArticleType;
 use  App\Entity\Article;
 use  App\Repository\ArticleRepository;
@@ -25,7 +26,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="show")
+     * @Route("/show/{id?}", name="show")
      */
     public function show(ArticleRepository $ArticleRepository, Request $Request)
     {
@@ -38,7 +39,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/create", name="create")
      */
-    public function create(Request $Request, ArticleRepository $ArticleRepository)
+    public function create(Request $Request)
     {
         $article = new Article;
 
@@ -53,12 +54,26 @@ class ArticleController extends AbstractController
             $EntityManager->persist($article);
             $EntityManager->flush();
 
-            return $this->show($ArticleRepository);
+            return $this->redirectToRoute('article.index');
         } else {
             return $this->render('article/create.html.twig', ['ArticleForm'=> $ArticleForm->createView() ]);
         }
+    }
 
-         
+    
+    /**
+     * @Route("/remove/{id}", name="remove")
+     */
+    public function remove(Request $Request, ArticleRepository $ArticleRepository)
+    {
+        $id = $Request->get('id');
+        $toRemove = $ArticleRepository->find($id);
+        $articles = $ArticleRepository->findAll();
+        //dump($articles);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($toRemove);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('article.index');
     }
 }

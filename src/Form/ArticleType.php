@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\LabelType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,12 +21,13 @@ class ArticleType extends AbstractType
         $builder
             ->add('name',TextType::class)
 
-            ->add('body',TextType::class)
+            ->add('body',TextareaType::class)
 
-            ->add('category', EntityType::class, ['class' => Category::class])
+            ->add('category', EntityType::class, [
+                'choice_label' => 'name',
+                'class' => Category::class])
 
-            ->add('save', SubmitType::class, ['attr'=>['class' => 'btn btn-success mt-5']]);
-
+            ->add('save', SubmitType::class, ['attr'=>['class' => 'btn btn-success mt-5 inline']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

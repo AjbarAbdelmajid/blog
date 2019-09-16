@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
 </style>
@@ -19,10 +20,11 @@
         </thead>
         <tbody>
             {% for article in articles  %}
-            
+                
                 <tr>
                     
                     <td>
+                    
                         <a href="{{path('article.show', {id: article.id})}}" style="text-decoration: none">
                             <div style="height:100%;width:100%">
                                 {{ article.name}}

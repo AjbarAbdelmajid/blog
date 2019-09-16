@@ -13,14 +13,24 @@
                 <td>title</td>
                 <td>description</td>
                 <td>category</td>
+                <td>remove</td>
             </tr>
         </thead>
         <tbody>
             
                 <tr>
-                     <td>{{ article.name}}</td>
+                    <td>{{ article.name}}</td>
                     <td>{{ article.body}}</td>
                     <td>{{ article.category}}</td>
+                    <td >
+                        <a 
+                        class="outline-danger"
+                        href="{{path('article.remove',{id:article.id})}}",
+                        style="text-decoration: none"
+                        >
+                            remove
+                        </a>
+                    </td>
                 </tr>
             
         </tbody>

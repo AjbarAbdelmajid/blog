@@ -9,12 +9,31 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>category name</td>
+            </tr>
+        </thead>
+    {% for  category in categories %}
+        <tbody>
+            <td >{{ category.name }}</td>
+            <td>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        see articles
+                    </a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/SymArt/src/Controller/CategoryController.php'|file_link(0) }}">src/Controller/CategoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/SymArt/templates/category/index.html.twig'|file_link(0) }}">templates/category/index.html.twig</a></code></li>
-    </ul>
+  		                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          {% for  article in category.articles %}
+    		                <a class="dropdown-item" href="{{path('article.show',{id:article.id})}}">{{article.name}}</a>
+                            {% endfor %}
+  		                </div>
+                    
+                </div>
+            </td>
+        <tbody>
+    {% endfor %}
+     </table>
 </div>
 {% endblock %}

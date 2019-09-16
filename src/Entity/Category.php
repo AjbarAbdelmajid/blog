@@ -19,7 +19,7 @@ class Category
     private $id;
 
    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category", fetch="EAGER")
      */
     private $articles;
 
