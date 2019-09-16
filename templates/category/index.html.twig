@@ -26,7 +26,7 @@
 
   		                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           {% for  article in category.articles %}
-    		                <a class="dropdown-item" href="{{path('article.show',{id:article.id})}}">{{article.name}}</a>
+    		                <a class="dropdown-item" href="{{path('article.show',{id:article.id})}}">{{article.title}}</a>
                             {% endfor %}
   		                </div>
                     
