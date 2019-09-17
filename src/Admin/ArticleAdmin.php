@@ -4,20 +4,35 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 final class ArticleAdmin extends AbstractAdmin
 {
+    // which field appears on the form 
     protected function configureFormFields(FormMapper $formMApper)
     {
         $formMApper
             ->with('Content')
                 ->add('title', TextType::class)
-                ->add('body', TextareaType::class)
+                ->add('body', CKEditorType::class)
+                ->add('paragraphs', CollectionType::class, array('by_reference'=> false),
+                    array(
+                        'edit' => 'inline',
+                        'sortable' => 'pos',
+                        'inline' => 'table',
+                        )
+                    )
             ->end()
             
             ->with('Related Content')
@@ -27,7 +42,12 @@ final class ArticleAdmin extends AbstractAdmin
                 ])
             ->end();
     }
-
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper -> add('title')
+        ->add('category');
+    }
+    
     Protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

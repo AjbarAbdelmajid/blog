@@ -12,8 +12,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <td>category name</td>
+                <td>{{form(CreateCatgForm)}}</td>
+
             </tr>
+            <tr><td>category name</td></tr>
         </thead>
     {% for  category in categories %}
         <tbody>
@@ -36,4 +38,5 @@
     {% endfor %}
      </table>
 </div>
+
 {% endblock %}

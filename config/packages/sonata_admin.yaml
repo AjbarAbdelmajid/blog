@@ -2,8 +2,40 @@ sonata_admin:
     title: 'Sonata Admin'
     dashboard:
         blocks:
-            - { type: sonata.admin.block.admin_list, position: left }
-
+            - { type: sonata.admin.block.admin_list,
+                position: left,
+                settings: {
+                    groups: [Articles]
+                    }
+                }
+            - { type: sonata.admin.block.admin_list,
+                position: left,
+                settings: {
+                    groups: [Category]
+                    }
+                }
+            - {
+                type: sonata.admin.block.stats,
+                position: top,
+                settings: {
+                    code: admin.articles,
+                    icon: fa-magic,
+                    text: created Articles,
+                    color: bg-green,
+                    filters: {
+                        edited: { value: 1}
+                        }
+                    }
+                }
+            
+        groups:
+            Articles:
+                items:
+                    - admin.articles
+            Category:
+                items:
+                    - admin.category
+    
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:

@@ -15,7 +15,7 @@ class CategoryFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextEntity::class)
+            ->add('name', TextType::class)
             ->add('create', SubmitType::class, ['attr'=>['class' => 'btn btn-success mt-5 inline']]);
     }
 

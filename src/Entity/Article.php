@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,9 +37,19 @@ class Article
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=400)
+     * @ORM\Column(type="text")
      */
     private $body;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Paragraph", cascade="persist", mappedBy="article")
+     */
+    private $paragraphs;
+
+    public function __construct()
+    {
+        $this->paragraphs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -64,6 +76,37 @@ class Article
     public function setBody(string $body): self
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Paragraph[]
+     */
+    public function getParagraphs(): Collection
+    {
+        return $this->paragraphs;
+    }
+
+    public function addParagraph(Paragraph $paragraph): self
+    {
+        if (!$this->paragraphs->contains($paragraph)) {
+            $this->paragraphs[] = $paragraph;
+            $paragraph->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParagraph(Paragraph $paragraph): self
+    {
+        if ($this->paragraphs->contains($paragraph)) {
+            $this->paragraphs->removeElement($paragraph);
+            // set the owning side to null (unless already changed)
+            if ($paragraph->getArticle() === $this) {
+                $paragraph->setArticle(null);
+            }
+        }
 
         return $this;
     }
