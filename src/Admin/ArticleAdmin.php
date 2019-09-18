@@ -15,6 +15,8 @@ use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Sonata\MediaBundle\Form\Type\MediaType;
+
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 final class ArticleAdmin extends AbstractAdmin
@@ -34,12 +36,19 @@ final class ArticleAdmin extends AbstractAdmin
                         )
                     )
             ->end()
-            
+            ->with('upload image')
+                ->add('media', MediaType::class,array(
+                    'provider' => 'sonata.media.provider.image',
+                     'context'  => 'default',
+                     'label' => 'Image',
+                     'required'   =>  false,
+                    ))
+            ->end()
             ->with('Related Content')
                 ->add('category', ModelType::class,[
                     'class' => Category::class,
                     'property' => 'name',
-                ])
+                    ])
             ->end();
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
