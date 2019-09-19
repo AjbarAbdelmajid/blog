@@ -11,6 +11,12 @@ sonata_admin:
             - { type: sonata.admin.block.admin_list,
                 position: left,
                 settings: {
+                    groups: [Media]
+                    }
+                }
+            - { type: sonata.admin.block.admin_list,
+                position: left,
+                settings: {
                     groups: [Category]
                     }
                 }
@@ -35,6 +41,9 @@ sonata_admin:
             Category:
                 items:
                     - admin.category
+            Media:
+                items:
+                    - admin.media
     
 sonata_block:
     blocks:

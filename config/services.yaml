@@ -40,6 +40,11 @@ services:
         arguments: [~, App\Entity\Paragraph, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Paragraph' }
+    admin.media:
+        class: App\Admin\MediaAdmin
+        arguments: [~, App\Application\Sonata\MediaBundle\Entity\Media, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Media' }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

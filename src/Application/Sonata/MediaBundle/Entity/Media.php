@@ -28,4 +28,17 @@ class Media extends BaseMedia
     {
         return $this->id;
     }
+
+    // just testing 
+    protected function getUploadDir()
+        {
+            return '/uploads';
+        }
+
+    public function getWebPath()
+        {
+            return null === $this->path
+            ? 'null'
+            : $this->getUploadDir().'/'.$this->path;
+        }
 }

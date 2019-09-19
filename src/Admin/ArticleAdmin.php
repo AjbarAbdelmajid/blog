@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Category;
+use App\Application\Sonata\MediaBundle\Entity\Media;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -10,6 +11,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\CoreBundle\Form\Type\CollectionType;
@@ -37,24 +39,21 @@ final class ArticleAdmin extends AbstractAdmin
                     )
             ->end()
             ->with('upload image')
-                ->add('media', MediaType::class,array(
-                    'provider' => 'sonata.media.provider.image',
-                     'context'  => 'default',
-                     'label' => 'Image',
-                     'required'   =>  false,
+                ->add('media', ModelType::class,array(
+                   ''
                     ))
             ->end()
             ->with('Related Content')
-                ->add('category', ModelType::class,[
-                    'class' => Category::class,
-                    'property' => 'name',
-                    ])
+                ->add('category', ModelType::class)
             ->end();
+            
+
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper -> add('title')
-        ->add('category');
+        ->add('category')
+        ->add('media');
     }
     
     Protected function configureListFields(ListMapper $listMapper)
@@ -62,6 +61,7 @@ final class ArticleAdmin extends AbstractAdmin
         $listMapper
                 ->addIdentifier('title')
                 ->add('body')
-                ->add('category');
+                ->add('category')
+                ->add('media');
     }
 }

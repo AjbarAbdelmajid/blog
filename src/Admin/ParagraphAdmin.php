@@ -13,9 +13,7 @@ final class ParagraphAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('content', CKEditorType::class, array(
-            
-        ));
+        $formMapper->add('content', CKEditorType::class);
     }
     protected function configureDatagridFilter(DatagridMapper $datagridMapper)
     {
