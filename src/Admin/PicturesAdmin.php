@@ -24,9 +24,9 @@ final class PicturesAdmin extends AbstractAdmin
         $formMApper
                 ->add('media', MediaType::class,[
                     'provider' => 'sonata.media.provider.image',
-                 'context'  => 'default'
-                    ])
-;    }
+                    'context'  => 'default',
+                    ]);
+    }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper ->add('media');

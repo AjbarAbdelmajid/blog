@@ -19,7 +19,7 @@ class Pictures
 #_____________________________________
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
-     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
     /**
@@ -36,13 +36,9 @@ class Pictures
     {
         return $this->media;
     }
-    public function __toString()
+    public function getpath()
     {
-        if(is_null($this->media)) {
-            return 'NULL';
-        }
-        dump($media);
-        return $this->media;
+        return $this->media->getPicturePath();
     }
     
 #_________________________________________________

@@ -32,13 +32,13 @@ class Media extends BaseMedia
     // just testing 
     protected function getUploadDir()
         {
-            return '/uploads';
+            return '%kernel.project_dir%/public/upload/media/';
         }
 
-    public function getWebPath()
+    public function getPicturePath()
         {
-            return null === $this->path
+            return null === $this->providerReference
             ? 'null'
-            : $this->getUploadDir().'/'.$this->path;
+            : $this->getUploadDir().'/'.$this->providerReference;
         }
 }
