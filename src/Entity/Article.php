@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\MediaBundle\Model\MediaInterface;
 
+
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
@@ -74,6 +76,7 @@ class Article
     public function __construct()
     {
         $this->paragraphs = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
     /**
      * @return Collection|Paragraph[]
@@ -104,26 +107,41 @@ class Article
         return $this;
     }
 #________________________________________________________________________________________
+    
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
-     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Pictures", mappedBy="article", cascade={"persist"}, fetch="LAZY")
      */
-    protected $media;
+    private $pictures;
 
     /**
-     * @param MediaInterface $media
+     * @return Collection|Pictures[]
      */
-    public function setMedia(MediaInterface $media)
+    public function getPictures(): Collection
     {
-        $this->media = $media;
+        return $this->pictures;
+    }
+
+    public function addPicture(Pictures $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setArticle($this);
+        }
+
         return $this;
     }
-    /**
-     * @return MediaInterface
-     */
-    public function getMedia()
+
+    public function removePicture(Pictures $picture): self
     {
-        return $this->media;
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getArticle() === $this) {
+                $picture->setArticle(null);
+            }
+        }
+
+        return $this;
     }
 
 }

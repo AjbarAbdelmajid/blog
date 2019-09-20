@@ -23,7 +23,7 @@ class Paragraph
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", cascade="persist", inversedBy="paragraphs")
-     * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $article;
 

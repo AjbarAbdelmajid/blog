@@ -37,12 +37,15 @@ final class ArticleAdmin extends AbstractAdmin
                         'inline' => 'table',
                         )
                     )
+                ->add('pictures', CollectionType::class, array('by_reference'=> false),
+                    array(
+                        'edit' => 'inline',
+                        'sortable' => 'pos',
+                        'inline' => 'table',
+                        )
+                    )
             ->end()
-            ->with('upload image')
-                ->add('media', ModelType::class,array(
-                   ''
-                    ))
-            ->end()
+            
             ->with('Related Content')
                 ->add('category', ModelType::class)
             ->end();
@@ -53,7 +56,7 @@ final class ArticleAdmin extends AbstractAdmin
     {
         $datagridMapper -> add('title')
         ->add('category')
-        ->add('media');
+        ->add('pictures');
     }
     
     Protected function configureListFields(ListMapper $listMapper)
@@ -62,6 +65,6 @@ final class ArticleAdmin extends AbstractAdmin
                 ->addIdentifier('title')
                 ->add('body')
                 ->add('category')
-                ->add('media');
+                ->add('pictures');
     }
 }

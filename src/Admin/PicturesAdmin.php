@@ -16,15 +16,16 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-final class MediaAdmin extends AbstractAdmin
+final class PicturesAdmin extends AbstractAdmin
 {
     // which field appears on the form 
     protected function configureFormFields(FormMapper $formMApper)
     {
-        
-       
         $formMApper
-                ->add('media', FileType::class,array())
+                ->add('media', MediaType::class,[
+                    'provider' => 'sonata.media.provider.image',
+                 'context'  => 'default'
+                    ])
 ;    }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
