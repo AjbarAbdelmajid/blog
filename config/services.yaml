@@ -46,5 +46,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Pictures' }
 
+    #App\Form\Extension\ImageTypeExtension:
+     #   tags:
+      #      - { name: form.type_extension, 
+       #         extended_type: \Symfony\Component\Form\Extension\Core\Type\FileType,
+        #        alias: file
+         #       }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

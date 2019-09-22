@@ -21,6 +21,7 @@ final class PicturesAdmin extends AbstractAdmin
     // which field appears on the form 
     protected function configureFormFields(FormMapper $formMApper)
     {
+        \dump('sdf');
         $formMApper
                 ->add('media', MediaType::class,[
                     'provider' => 'sonata.media.provider.image',

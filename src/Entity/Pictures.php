@@ -16,7 +16,7 @@ class Pictures
      * @ORM\Column(type="integer")
      */
     private $id;
-#_____________________________________
+#___________________________Media_________________________
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="App\Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
@@ -36,12 +36,8 @@ class Pictures
     {
         return $this->media;
     }
-    public function getpath()
-    {
-        return $this->media->getPicturePath();
-    }
     
-#_________________________________________________
+#___________________________article______________________
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="pictures", cascade={"persist"}, fetch="LAZY")
@@ -65,5 +61,5 @@ class Pictures
 
         return $this;
     }
-
+#_______________________________________________________
 }
