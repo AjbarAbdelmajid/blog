@@ -5,11 +5,6 @@ sonata_media:
         default:
             providers:
                 - sonata.media.provider.image
-               
-
-            formats:
-                small: { width: 100 , quality: 70}
-
     cdn:
         server:
             path: /upload/media
