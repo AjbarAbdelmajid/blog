@@ -10,7 +10,7 @@
     {{ block('form_widget') }}
     {% if imageName|default(null) %}
         {% if imageName is not null %}
-            <img src="http://localhost/blog/public/upload/media/default/0001/01/{{ asset(imageName) }}" width="100" height="100"/>
+            <img src="{{ asset('upload/media/default/0001/01/') }}{{ asset(imageName) }}" width="100" height="100"/>
         {% endif %}
     {% endif %}
 
