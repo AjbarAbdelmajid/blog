@@ -18,7 +18,7 @@ class ImageTypeExtension extends AbstractTypeExtension{
 
     public function buildView(FormView $view, FormInterface $form,  array $options){
         $parentData = $form->getParent()->getData();
-        
+        //dump(getenv(APP_TEST));
         // check if there is an uploaded image
         if ($parentData !== null){
 

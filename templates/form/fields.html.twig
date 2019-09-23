@@ -1,18 +1,14 @@
 {% extends 'form_div_layout.html.twig' %}
 
-{% media media, 'small' %}
-
-{% media media, 'small' with {'class': 'Media'} %}
-
 {% block file_widget %}
     {% spaceless %}
-
-    {{ block('form_widget') }}
+        
     {% if imageName|default(null) %}
         {% if imageName is not null %}
-            <img src="{{ asset('upload/media/default/0001/01/') }}{{ asset(imageName) }}" width="100" height="100"/>
+            <img src="{{ asset('upload/media/default/0001/01/') }}{{ asset(imageName) }}" width="100" height="100"/><br><br>
         {% endif %}
     {% endif %}
 
+    {{ block('form_widget') }}
     {% endspaceless %}
 {% endblock %}
