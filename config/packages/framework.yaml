@@ -14,6 +14,8 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    templating:
+        engines: ['twig', 'php']
 
     #framework:
     #    translator: { fallbacks: ['%locale%'] }
