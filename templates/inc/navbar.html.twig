@@ -7,12 +7,26 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('article.create')}}">new article</a>
+                
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('article.create')}}">new article</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{path('category.index')}}">categories</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link btn " href="{{path('fos_user_security_logout')}}">LogOut</a>
+                    </li>
+                {% else %}
+                <li class="nav-item ">
+                    <a class="nav-link btn " href="{{path('fos_user_security_login')}}">LogIn</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('category.index')}}">categories</a>
+                <li class="nav-item ">
+                    <a class="nav-link btn " href="/register">Register</a>
                 </li>
+                {% endif %}
+                
             </ul>
         </div>
     </nav>

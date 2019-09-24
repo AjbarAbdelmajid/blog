@@ -1,11 +1,14 @@
 {% extends 'form_div_layout.html.twig' %}
 
 {% block file_widget %}
+
     {% spaceless %}
         
     {% if imageName|default(null) %}
         {% if imageName is not null %}
+        {{ dump(media.value) }}
             <img src="{{ asset('upload/media/default/0001/01/') }}{{ asset(imageName) }}" width="100" height="100"/><br><br>
+            <img {% for name, value in media %}{{ name }}="{{ value }}" {% endfor %} />
         {% endif %}
     {% endif %}
 

@@ -9,11 +9,14 @@ framework:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+        save_path: null
 
     #esi: true
     #fragments: true
     php_errors:
         log: true
+    templating:
+        engines: ['twig', 'php']
 
     #framework:
     #    translator: { fallbacks: ['%locale%'] }

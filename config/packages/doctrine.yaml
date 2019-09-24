@@ -1,6 +1,8 @@
 doctrine:
     dbal:
         # configure these for your database server
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         driver: 'pdo_mysql'
         server_version: '5.7'
         charset: utf8mb4
@@ -20,3 +22,6 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+            SonataUserBundle: ~
+            FOSUserBundle: ~
+                    
