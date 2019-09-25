@@ -21,7 +21,7 @@ class User extends BaseUser
      /**
      * @ORM\Column(type="boolean")
      */
-    protected $isAdmin;
+    
 
     public function __construct()
     {
@@ -38,11 +38,5 @@ class User extends BaseUser
     public function getIsAdmin(): ?int
     {
         return $this->isAdmin;
-    }
-    public function setIsAdmin(boolean $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
     }
 }

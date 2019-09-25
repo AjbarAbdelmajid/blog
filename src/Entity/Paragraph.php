@@ -16,21 +16,16 @@ class Paragraph
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $content;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", cascade="persist", inversedBy="paragraphs")
-     * 
-     */
-    private $article;
-
     public function getId(): ?int
     {
         return $this->id;
     }
+#___________________________Content___________________________
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $content;
 
     public function getContent(): ?string
     {
@@ -43,6 +38,13 @@ class Paragraph
 
         return $this;
     }
+#___________________________Article__________________________
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", cascade="persist", inversedBy="paragraphs")
+     * 
+     */
+    private $article;
 
     public function getArticle(): ?Article
     {

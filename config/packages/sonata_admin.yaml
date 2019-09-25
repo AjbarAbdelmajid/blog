@@ -14,6 +14,12 @@ sonata_admin:
                     groups: [Category]
                     }
                 }
+            - { type: sonata.admin.block.admin_list,
+                position: left,
+                settings: {
+                    groups: [Pictres]
+                    }
+                }
             - {
                 type: sonata.admin.block.stats,
                 position: top,
@@ -35,6 +41,9 @@ sonata_admin:
             Category:
                 items:
                     - admin.category
+            Pictres:
+                items:
+                    - admin.pictures
     
 sonata_block:
     blocks:

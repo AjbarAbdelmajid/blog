@@ -1,11 +1,12 @@
 {% extends 'form_div_layout.html.twig' %}
 
 {% block file_widget %}
+
     {% spaceless %}
         
-    {% if imageName|default(null) %}
-        {% if imageName is not null %}
-            <img src="{{ asset('upload/media/default/0001/01/') }}{{ asset(imageName) }}" width="100" height="100"/><br><br>
+    {% if media|default(null) %}
+        {% if media is not null %}
+            <img src="{% path media, 'reference' %}" width="100" height="100"/><br><br>
         {% endif %}
     {% endif %}
 

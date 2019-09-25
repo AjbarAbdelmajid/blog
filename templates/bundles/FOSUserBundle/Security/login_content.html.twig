@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 {% include 'incs.html.twig' %}
+=======
+{% include "base.html.twig" %}
+>>>>>>> 93c27efb18f48096e35814a873f7f1ec18238414
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
+<<<<<<< HEAD
     <div class="error-messages">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
@@ -28,3 +33,29 @@
 
     <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="login" />
 </form>
+=======
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+{% block body %}
+    
+    <form action="{{ path("fos_user_security_check") }}" class="container example-wrapper justify-content-center" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+
+        <div class="form-group">
+            <label for="username">username</label>
+            <input type="text" class="form-control"  id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" class="form-control"  id="password" name="_password" required="required" autocomplete="current-password" />
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="remember_me" name="_remember_me" value="on" />
+            <label class="form-check-label" for="remember_me">remember_me</label>
+        </div>
+        <input type="submit" id="_submit" class="btn btn-primary" name="_submit" value="login" />
+    </form>
+{% endblock %}
+>>>>>>> 93c27efb18f48096e35814a873f7f1ec18238414
