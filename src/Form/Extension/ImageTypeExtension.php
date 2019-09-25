@@ -17,17 +17,22 @@ class ImageTypeExtension extends AbstractTypeExtension{
     }
 
     public function buildView(FormView $view, FormInterface $form,  array $options){
-        $parentData = $form->getParent()->getParent()->getData();
+        
+        
+        if ($form->getParent()->getParent()!== null){
+            $parentData = $form->getParent()->getParent()->getData();
 
-        // check if there is an uploaded image
-        if ($parentData !== null){
-
-            // if the data submited show uploaded images 
-            if ($parentData->getId() !== null) {                 
-                $view->vars['media'] = $parentData->getMedia();
-                //dump($view);
-            } 
+            // check if there is an uploaded image
+            if ($parentData !== null){
+    
+                // if the data submited show uploaded images 
+                if ($parentData->getId() !== null) {                 
+                    $view->vars['media'] = $parentData->getMedia();
+                    //dump($view);
+                } 
+            }
         }
+       
         
     }
 }

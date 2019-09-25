@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -67,7 +68,7 @@ class Article
         $this->body = $body;
         return $this;
     }
-#________________________________________________________________________________________
+#______________________________________Paragraphs______________________________
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Paragraph", cascade="persist", mappedBy="article")
      */
@@ -106,12 +107,17 @@ class Article
 
         return $this;
     }
-#________________________________________________________________________________________
+#________________________________Pictures_________________________________________
     
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Pictures", mappedBy="article", cascade={"persist"}, fetch="LAZY")
      */
     private $pictures;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\UserBundle\Entity\User", inversedBy="article")
+     */
+    private $user;
 
     /**
      * @return Collection|Pictures[]
@@ -140,6 +146,18 @@ class Article
                 $picture->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

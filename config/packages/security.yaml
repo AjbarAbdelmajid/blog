@@ -30,18 +30,24 @@ security:
             logout:
                 path:           /admin/logout
                 target:         /admin/login
-            anonymous:          true
-
+            stateless: false
+            
+        
         main:
             pattern: ^/
             user_checker: security.user_checker
+            context:  user
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-            logout: true
+                check_path:     /login_check
+                default_target_path: /article
+            logout: true 
             remember_me:
                 secret: '%kernel.secret%'
             anonymous: true
+            stateless: false
+            
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

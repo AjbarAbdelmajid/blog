@@ -17,6 +17,8 @@ framework:
         log: true
     templating:
         engines: ['twig', 'php']
+    
+    csrf_protection: { enabled: true }
 
     #framework:
     #    translator: { fallbacks: ['%locale%'] }

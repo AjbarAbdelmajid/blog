@@ -10,6 +10,11 @@
             <generator strategy="AUTO" />
         </id>
 
+        <one-to-many field="article" target-entity="App\Entity\Article" mapped-by="user">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

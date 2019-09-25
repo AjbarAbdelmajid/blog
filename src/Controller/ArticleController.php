@@ -11,7 +11,7 @@ use  App\Entity\Article;
 use  App\Repository\ArticleRepository;
 
 /**
-     * @Route("/", name="article.")
+     * @Route("/article", name="article.")
      */
 class ArticleController extends AbstractController
 {
@@ -20,6 +20,9 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $ArticleRepository)
     {
+        //$user = $this->get('security.token_storage')->getToken();
+        //$articles = $ArticleRepository->findBy(['user' => $user]);
+        dump( $this->get('security.token_storage')->getToken());
         $articles = $ArticleRepository->findAll();
         return $this->render('article/index.html.twig', ['articles'=>$articles]);
 
