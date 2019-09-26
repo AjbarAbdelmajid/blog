@@ -22,7 +22,7 @@ class ArticleType extends AbstractType
             ->add('title',TextType::class)
 
             ->add('body',TextareaType::class)
-
+            
             ->add('category', EntityType::class, [
                 'choice_label' => 'name',
                 'class' => Category::class])

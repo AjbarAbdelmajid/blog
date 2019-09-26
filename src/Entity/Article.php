@@ -115,11 +115,6 @@ class Article
     private $pictures;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\UserBundle\Entity\User", inversedBy="article")
-     */
-    private $user;
-
-    /**
      * @return Collection|Pictures[]
      */
     public function getPictures(): Collection
@@ -149,6 +144,11 @@ class Article
 
         return $this;
     }
+#_______________________User_______________________
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Application\Sonata\UserBundle\Entity\User", inversedBy="article")
+     */
+    private $user;
 
     public function getUser(): ?User
     {

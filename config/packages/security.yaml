@@ -5,21 +5,29 @@ security:
         SONATA:
             - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
 
+    #___________________________________________________
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    
+
+    #___________________________________________________    
     providers:
         in_memory: { memory: null }
         fos_userbundle:
             id: fos_user.user_provider.username
+        app_user_provider:
+            entity:
+                class: App\Application\Sonata\UserBundle\Entity\User
+                property: username
+    
+    #___________________________________________________
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        #___________________________________________________
         admin:
             pattern:            /admin(.*)
-            context:            user
+            user_checker: security.user_checker
             form_login:
                 provider:       fos_userbundle
                 login_path:     /admin/login
@@ -27,26 +35,28 @@ security:
                 check_path:     /admin/login_check
                 default_target_path: /admin/dashboard
                 failure_path:   null
+                #csrf_token_generator: security.csrf.token_manager
             logout:
                 path:           /admin/logout
                 target:         /admin/login
-            stateless: false
-            
-        
+                invalidate_session: false
+            anonymous: true
+        #___________________________________________________
         main:
             pattern: ^/
             user_checker: security.user_checker
-            context:  user
             form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-                check_path:     /login_check
+                provider: app_user_provider
+                #csrf_token_generator: security.csrf.token_manager
+                check_path: /login_check
                 default_target_path: /article
-            logout: true 
+            logout:
+                path: /logout
+                target: /login
+                invalidate_session: false
             remember_me:
                 secret: '%kernel.secret%'
             anonymous: true
-            stateless: false
             
 
             # activate different ways to authenticate

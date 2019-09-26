@@ -20,12 +20,12 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $ArticleRepository)
     {
-        //$user = $this->get('security.token_storage')->getToken();
-        //$articles = $ArticleRepository->findBy(['user' => $user]);
-        dump( $this->get('security.token_storage')->getToken());
-        $articles = $ArticleRepository->findAll();
+        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $articles = $ArticleRepository->findBy(['user' => $user]);
+        //dump( $this->get('security.token_storage')->getToken()->getUser());
+        //$articles = $ArticleRepository->findAll();
+        dump($user);
         return $this->render('article/index.html.twig', ['articles'=>$articles]);
-
     }
 
     /**
@@ -44,8 +44,10 @@ class ArticleController extends AbstractController
      */
     public function create(Request $Request)
     {
-        $article = new Article;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $article = new Article;
+        $article->setUser($user);
         $ArticleForm = $this->createForm(ArticleType::class, $article);
         $ArticleForm->handleRequest($Request);
 
