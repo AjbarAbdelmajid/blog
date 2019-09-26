@@ -45,6 +45,11 @@ services:
         arguments: [~, App\Entity\Pictures, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Pictures' }
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Application\Sonata\UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'user' }
 
     #App\Form\Extension\ImageTypeExtension:
      #   tags:

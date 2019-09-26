@@ -2,6 +2,7 @@
 
 namespace App\Application\Sonata\UserBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Article;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,7 +24,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user", cascade={"persist"}, fetch="LAZY")
      */
     private $article;
 

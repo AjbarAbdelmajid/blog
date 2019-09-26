@@ -11,6 +11,12 @@ sonata_admin:
             - { type: sonata.admin.block.admin_list,
                 position: left,
                 settings: {
+                    groups: [User]
+                    }
+                }
+            - { type: sonata.admin.block.admin_list,
+                position: left,
+                settings: {
                     groups: [Category]
                     }
                 }
@@ -44,6 +50,9 @@ sonata_admin:
             Pictres:
                 items:
                     - admin.pictures
+            User:
+                items:
+                    - admin.user
     
 sonata_block:
     blocks:

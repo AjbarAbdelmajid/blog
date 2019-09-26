@@ -23,8 +23,8 @@ class ArticleController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
         $articles = $ArticleRepository->findBy(['user' => $user]);
         //dump( $this->get('security.token_storage')->getToken()->getUser());
-        //$articles = $ArticleRepository->findAll();
-        dump($user);
+        $articles = $ArticleRepository->findAll();
+
         return $this->render('article/index.html.twig', ['articles'=>$articles]);
     }
 

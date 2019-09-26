@@ -31,7 +31,9 @@
                             </div>
                         </a>
                     </td>
-                    <td>{{ article.body}}</td>
+                    <td>
+                        {{ article.body|striptags}}
+                    </td>
                     <td>{{ article.category}}</td>
                 </tr>
             
